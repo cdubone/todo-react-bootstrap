@@ -22,7 +22,6 @@ function App() {
   const getTodoDetails = id => {
     const todoList = (todoData.length === 0) ? TodoData : todoData;
     const result = todoList.find(x => x.Id === id);
-    console.log(result);
     setTodoDetails(result);
   };
 
@@ -59,18 +58,16 @@ function App() {
   };
 
   const updateAddList = e => {
-    console.log(e.target.value)
     setTodoListToAdd(e.target.value);
   };
 
   const updateAddTodo = e => {
-    console.log(e.target.value)
     setTodoItemToAdd(e.target.value);
   };
 
   return (
     <div className="App">
-      <div className="container-fluid">
+      <div className="container">
         <Header />
         <div className="row">
           <div className="list-group col-sm-4 offset-sm-1">
