@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './styles/App.scss';
 import TodoData from './data/Todo.js';
 import Header from './components/Header.js'
+import TextInput from "./components/TextInput";
 
 function App() {
   const [todoData, setTodoData] = useState([]);
@@ -58,10 +59,12 @@ function App() {
   };
 
   const updateAddList = e => {
+    console.log(e.target.value)
     setTodoListToAdd(e.target.value);
   };
 
   const updateAddTodo = e => {
+    console.log(e.target.value)
     setTodoItemToAdd(e.target.value);
   };
 
@@ -84,10 +87,11 @@ function App() {
                 </span>
               </button>
             ))}
-            <form className="form-inline my-1" onSubmit={addListHandler}>
-              <input className='form-control' type="text" placeholder="Add New List" value={todoListToAdd} onChange={updateAddList} />
-              <button className='btn btn-primary'>+</button>
-            </form>
+            <TextInput
+              onSubmit={addListHandler}
+              placeholder="Add New List"
+              value={todoListToAdd}
+              onChange={updateAddList} />
           </div>
           <div className="col-sm-6">
             {todoDetails && (
@@ -100,10 +104,11 @@ function App() {
                 ))}
               </ul>
             )}
-            <form className="form-inline my-1" onSubmit={addTodoHandler}>
-              <input className='form-control' type="text" placeholder="Add New Todo" value={todoItemToAdd} onChange={updateAddTodo} />
-              <button className='btn btn-primary'>+</button>
-            </form>
+            <TextInput
+              onSubmit={addTodoHandler}
+              placeholder="Add New Todo"
+              value={todoItemToAdd}
+              onChange={updateAddTodo} />
           </div>
         </div>
       </div>
