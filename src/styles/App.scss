@@ -15,12 +15,39 @@
   }
 
   .list-group-item-action {
+    position: relative;
+
     &.done {
       background-color: lightgray;
       label {
         text-decoration: line-through;
       }
     }
+
+    &:hover {
+      .modify-todo {
+        display: inline;
+      }
+    }
+
+    .modify-todo {
+      position: absolute;
+      right: 11px;
+      top: 11px;
+      display: none;
+
+      button{
+        background-color: white;
+        color: #495057;
+        border: 1px solid #495057;
+
+        &:first-child {
+          margin-right: 3px;
+        }
+      }
+    }
+
+    
   }
 }
 

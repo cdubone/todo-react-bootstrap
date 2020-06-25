@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { PencilIcon, XIcon } from '@primer/octicons-react'
 // import PropTypes from "prop-types";
 
 function TodoItem(props) {
@@ -26,6 +27,10 @@ function TodoItem(props) {
                 onChange={props.onChange}
             />
             <label htmlFor={props.htmlFor}>{props.label}</label>
+            <div className='modify-todo'>
+                <button><PencilIcon size={16} /></button><button><XIcon size={16} /></button>
+            </div>
+
         </ li>
     )
 }
