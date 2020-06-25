@@ -22,6 +22,7 @@ function App() {
 
   const getTodoDetails = id => {
     const todoList = (todoData.length === 0) ? TodoData : todoData;
+    console.log();
     const result = todoList.find(x => x.Id === id);
     setTodoDetails(result);
   };
@@ -43,16 +44,24 @@ function App() {
     e.preventDefault();
     const newItem = {
       "Id": randomNumber(),
-      "Title": todoItemToAdd
+      "Title": todoItemToAdd,
+      "isChecked": false
     }
     const newArray = [...todoDetails.TodoList, newItem];
     todoDetails.TodoList = newArray;
     setTodoItemToAdd('');
   };
 
+  const updateChecked = e => {
+    // console.log(todoDetails.TodoList);
+    const id = e.target.id;
+    const selected = todoDetails.TodoList.find(x => x.Id === id);
+    console.log(selected);
+  };
+
   const randomNumber = () => {
     return Math.floor(Math.random() * 200) + 100;
-  }
+  };
 
   const handleDoubleClick = () => {
     console.log('double click');
@@ -96,7 +105,6 @@ function App() {
               <ul className="list-group">
                 <h2>{todoDetails.Title} List</h2>
                 {todoDetails.TodoList.map(details => (
-
                   <TodoItem
                     key={details.Id} //not a prop
                     id={details.Id}
@@ -104,7 +112,8 @@ function App() {
                     value={details.Title}
                     htmlFor={details.Id}
                     label={details.Title}
-                    isChecked={details.isChecked} />
+                    isChecked={details.isChecked}
+                    onChange={updateChecked} />
 
                 ))}
               </ul>

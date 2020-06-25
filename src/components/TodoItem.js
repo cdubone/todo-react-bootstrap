@@ -23,6 +23,7 @@ function TodoItem(props) {
                 value={props.value}
                 onChange={handleCheck}
                 checked={props.isChecked}
+                onChange={props.onChange}
             />
             <label htmlFor={props.htmlFor}>{props.label}</label>
         </ li>
