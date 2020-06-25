@@ -6,10 +6,6 @@ function TodoItem(props) {
 
     // const [isChecked, setIsChecked] = useState(false);
 
-    const handleCheck = e => {
-        console.log(e.target.checked);
-    };
-
     let wrapperClass = "list-group-item list-group-item-action";
     if (props.isChecked === true) {
         wrapperClass += " done";
@@ -22,7 +18,6 @@ function TodoItem(props) {
                 id={props.id}
                 name={props.name}
                 value={props.value}
-                onChange={handleCheck}
                 checked={props.isChecked}
                 onChange={props.onChange}
             />
