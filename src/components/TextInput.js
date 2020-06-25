@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import { PlusIcon } from '@primer/octicons-react';
 
 function TextInput(props) {
 
@@ -11,7 +12,7 @@ function TextInput(props) {
     return (
         <form className={wrapperClass} onSubmit={props.onSubmit}>
             <input className='form-control' type="text" placeholder={props.placeholder} value={props.value} onChange={props.onChange} />
-            <button className='btn btn-primary'>+</button>
+            <button className='btn btn-primary'><PlusIcon size={16} /></button>
             {props.error && <div className="alert alert-danger">{props.error}</div>}
         </form>
     )
