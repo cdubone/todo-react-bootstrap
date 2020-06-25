@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PencilIcon, XIcon } from '@primer/octicons-react'
+import { PencilIcon, XIcon } from '@primer/octicons-react';
 // import PropTypes from "prop-types";
 
 function TodoItem(props) {

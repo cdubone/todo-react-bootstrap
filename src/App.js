@@ -4,6 +4,7 @@ import TodoData from './data/Todo';
 import Header from './components/Header'
 import TextInput from "./components/TextInput";
 import TodoItem from "./components/TodoItem";
+import { PencilIcon, XIcon } from '@primer/octicons-react';
 
 function App() {
   const [todoData, setTodoData] = useState([]);
@@ -92,6 +93,9 @@ function App() {
                 <span className="badge badge-primary badge-pill">
                   {todos.TodoList.length}
                 </span>
+                <div className='modify-todo'>
+                  <button><PencilIcon size={16} /></button><button><XIcon size={16} /></button>
+                </div>
               </button>
             ))}
             <TextInput
