@@ -7,6 +7,12 @@
     margin-bottom: -1px;
     border-radius: 0;
   }
+
+  label {
+    margin-bottom: 0;
+    margin-left: 5px;
+    width: calc(100% - 18px);
+  }
 }
 
 

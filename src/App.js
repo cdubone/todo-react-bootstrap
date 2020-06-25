@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './styles/App.scss';
-import TodoData from './data/Todo.js';
-import Header from './components/Header.js'
+import TodoData from './data/Todo';
+import Header from './components/Header'
 import TextInput from "./components/TextInput";
+import TodoItem from "./components/TodoItem";
 
 function App() {
   const [todoData, setTodoData] = useState([]);
@@ -95,9 +96,15 @@ function App() {
               <ul className="list-group">
                 <h2>{todoDetails.Title} List</h2>
                 {todoDetails.TodoList.map(details => (
-                  <li className="list-group-item list-group-item-action" key={details.Id}>
-                    {details.Title}
-                  </li>
+
+                  <TodoItem
+                    key={details.Id}
+                    id={details.Id}
+                    name={details.Id}
+                    value={details.Title}
+                    htmlFor={details.Id}
+                    label={details.Title} />
+
                 ))}
               </ul>
             )}
