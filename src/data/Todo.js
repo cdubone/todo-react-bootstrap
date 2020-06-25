@@ -7,17 +7,17 @@ const TodoData = [
             {
                 "Id": 1,
                 "Title": "Apples",
-                "isChecked": false
+                "IsChecked": false
             },
             {
                 "Id": 2,
                 "Title": "Oranges",
-                "isChecked": false
+                "IsChecked": false
             },
             {
                 "Id": 3,
                 "Title": "Bananas",
-                "isChecked": true
+                "IsChecked": true
             }
         ]
     },
@@ -27,17 +27,17 @@ const TodoData = [
         "TodoList": [{
             "Id": 11,
             "Title": "Clean Kitchen",
-            "isChecked": false
+            "IsChecked": false
         },
         {
             "Id": 12,
             "Title": "Feed Pets",
-            "isChecked": false
+            "IsChecked": false
         },
         {
             "Id": 13,
             "Title": "Do Stuff",
-            "isChecked": false
+            "IsChecked": false
         }]
     },
     {
@@ -51,22 +51,22 @@ const TodoData = [
         "TodoList": [{
             "Id": 21,
             "Title": "Diapers",
-            "isChecked": false
+            "IsChecked": false
         },
         {
             "Id": 22,
             "Title": "Cat Food",
-            "isChecked": false
+            "IsChecked": false
         },
         {
             "Id": 23,
             "Title": "Apples",
-            "isChecked": false
+            "IsChecked": false
         },
         {
             "Id": 24,
             "Title": "Bananas",
-            "isChecked": false
+            "IsChecked": false
         }]
     },
     {
@@ -76,7 +76,7 @@ const TodoData = [
             {
                 "Id": 34,
                 "Title": "TPS Reports",
-                "isChecked": true
+                "IsChecked": true
             }
         ]
     }

@@ -45,7 +45,7 @@ function App() {
     const newItem = {
       "Id": randomNumber(),
       "Title": todoItemToAdd,
-      "isChecked": false
+      "IsChecked": false
     }
     const newArray = [...todoDetails.TodoList, newItem];
     todoDetails.TodoList = newArray;
@@ -55,7 +55,7 @@ function App() {
   const updateChecked = e => {
     const id = Number(e.target.id);
     const selected = todoDetails.TodoList.find(x => x.Id === id);
-    selected.isChecked = !selected.isChecked;
+    selected.IsChecked = !selected.IsChecked;
     console.log(selected);
   };
 
@@ -110,7 +110,7 @@ function App() {
                     value={details.Title}
                     htmlFor={details.Id}
                     label={details.Title}
-                    isChecked={details.isChecked}
+                    isChecked={details.IsChecked}
                     onChange={updateChecked} />
                 ))}
               </ul>
