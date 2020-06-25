@@ -81,9 +81,9 @@ function App() {
       <div className="container">
         <Header />
         <div className="row">
-          <div className="list-group col-sm-4 offset-sm-1">
+          <ul className="list-group col-sm-4 offset-sm-1">
             {todoData.map(todos => (
-              <button
+              <li
                 key={todos.Id}
                 className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
                 onClick={() => getTodoDetails(todos.Id)}
@@ -96,14 +96,14 @@ function App() {
                 <div className='modify-todo'>
                   <button><PencilIcon size={16} /></button><button><XIcon size={16} /></button>
                 </div>
-              </button>
+              </li>
             ))}
             <TextInput
               onSubmit={addListHandler}
               placeholder="Add New List"
               value={todoListToAdd}
               onChange={updateAddList} />
-          </div>
+          </ul>
           <div className="col-sm-6">
             {todoDetails && (
               <ul className="list-group">

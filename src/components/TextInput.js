@@ -11,7 +11,12 @@ function TextInput(props) {
 
     return (
         <form className={wrapperClass} onSubmit={props.onSubmit}>
-            <input className='form-control' type="text" placeholder={props.placeholder} value={props.value} onChange={props.onChange} />
+            <input
+                className='form-control'
+                type="text"
+                placeholder={props.placeholder}
+                value={props.value}
+                onChange={props.onChange} />
             <button className='btn btn-primary'><PlusIcon size={16} /></button>
             {props.error && <div className="alert alert-danger">{props.error}</div>}
         </form>
