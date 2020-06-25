@@ -98,12 +98,13 @@ function App() {
                 {todoDetails.TodoList.map(details => (
 
                   <TodoItem
-                    key={details.Id}
+                    key={details.Id} //not a prop
                     id={details.Id}
                     name={details.Id}
                     value={details.Title}
                     htmlFor={details.Id}
-                    label={details.Title} />
+                    label={details.Title}
+                    isChecked={details.isChecked} />
 
                 ))}
               </ul>

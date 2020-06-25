@@ -6,15 +6,18 @@ const TodoData = [
         "TodoList": [
             {
                 "Id": 1,
-                "Title": "Apples"
+                "Title": "Apples",
+                "isChecked": false
             },
             {
                 "Id": 2,
-                "Title": "Oranges"
+                "Title": "Oranges",
+                "isChecked": false
             },
             {
                 "Id": 3,
-                "Title": "Bananas"
+                "Title": "Bananas",
+                "isChecked": true
             }
         ]
     },
@@ -23,15 +26,18 @@ const TodoData = [
         "Title": "Daily Tasks",
         "TodoList": [{
             "Id": 11,
-            "Title": "Clean Kitchen"
+            "Title": "Clean Kitchen",
+            "isChecked": false
         },
         {
             "Id": 12,
-            "Title": "Feed Pets"
+            "Title": "Feed Pets",
+            "isChecked": false
         },
         {
             "Id": 13,
-            "Title": "Do Stuff"
+            "Title": "Do Stuff",
+            "isChecked": false
         }]
     },
     {
@@ -44,19 +50,23 @@ const TodoData = [
         "Title": "Costco",
         "TodoList": [{
             "Id": 21,
-            "Title": "Diapers"
+            "Title": "Diapers",
+            "isChecked": false
         },
         {
             "Id": 22,
-            "Title": "Cat Food"
+            "Title": "Cat Food",
+            "isChecked": false
         },
         {
             "Id": 23,
-            "Title": "Apples"
+            "Title": "Apples",
+            "isChecked": false
         },
         {
             "Id": 24,
-            "Title": "Bananas"
+            "Title": "Bananas",
+            "isChecked": false
         }]
     },
     {
@@ -65,7 +75,8 @@ const TodoData = [
         "TodoList": [
             {
                 "Id": 34,
-                "Title": "TPS Reports"
+                "Title": "TPS Reports",
+                "isChecked": false
             }
         ]
     }
