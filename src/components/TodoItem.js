@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PencilIcon, XIcon } from '@primer/octicons-react';
 // import PropTypes from "prop-types";
 
@@ -14,12 +14,12 @@ function TodoItem(props) {
             <input
                 type="checkbox"
                 id={props.id}
-                name={props.name}
-                value={props.value}
+                name={props.id}
+                value={props.title}
                 checked={props.isChecked}
                 onChange={props.onChange}
             />
-            <label htmlFor={props.htmlFor}>{props.label}</label>
+            <label htmlFor={props.id}>{props.title}</label>
             <div className='modify-todo'>
                 <button><PencilIcon size={16} /></button>
                 <button data-parent={props.id} onClick={props.deleteClick}><XIcon size={16} /></button>

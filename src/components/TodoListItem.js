@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PencilIcon, XIcon } from '@primer/octicons-react';
 // import PropTypes from "prop-types";
 

@@ -5,7 +5,6 @@ import Header from './components/Header'
 import TextInput from "./components/TextInput";
 import TodoItem from "./components/TodoItem";
 import TodoListItem from "./components/TodoListItem";
-import { PencilIcon, XIcon } from '@primer/octicons-react';
 
 function App() {
   const [todoData, setTodoData] = useState([]);
@@ -87,8 +86,7 @@ function App() {
         <div className="row">
           <ul className="list-group col-sm-4 offset-sm-1">
             {todoData.map(todos => (
-              <TodoListItem
-                key={todos.Id}//Not a prop
+              <TodoListItem key={todos.Id}//Not a prop
                 onClick={() => getTodoDetails(todos.Id)}
                 title={todos.Title}
                 length={todos.TodoList.length} />
@@ -104,13 +102,9 @@ function App() {
               <ul className="list-group">
                 <h2>{todoDetails.Title} List</h2>
                 {todoDetails.TodoList.map(details => (
-                  <TodoItem
-                    key={details.Id} //not a prop
+                  <TodoItem key={details.Id} //not a prop
                     id={details.Id}
-                    name={details.Id}
-                    value={details.Title}
-                    htmlFor={details.Id}
-                    label={details.Title}
+                    title={details.Title}
                     isChecked={details.IsChecked}
                     onChange={updateChecked}
                     deleteClick={deleteTodo} />
