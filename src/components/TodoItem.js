@@ -4,8 +4,6 @@ import { PencilIcon, XIcon } from '@primer/octicons-react';
 
 function TodoItem(props) {
 
-    // const [isChecked, setIsChecked] = useState(false);
-
     let wrapperClass = "list-group-item list-group-item-action";
     if (props.isChecked === true) {
         wrapperClass += " done";

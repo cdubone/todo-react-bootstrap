@@ -4,6 +4,7 @@ import TodoData from './data/Todo';
 import Header from './components/Header'
 import TextInput from "./components/TextInput";
 import TodoItem from "./components/TodoItem";
+import TodoListItem from "./components/TodoListItem";
 import { PencilIcon, XIcon } from '@primer/octicons-react';
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
     const newArray = todoDetails.TodoList.filter(x => x.Id !== id)
     console.log(newArray);
     todoDetails.TodoList = newArray;
+    setTodoDetails(todoDetails);
   };
 
   const randomNumber = () => {
@@ -85,19 +87,11 @@ function App() {
         <div className="row">
           <ul className="list-group col-sm-4 offset-sm-1">
             {todoData.map(todos => (
-              <li
-                key={todos.Id}
-                className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+              <TodoListItem
+                key={todos.Id}//Not a prop
                 onClick={() => getTodoDetails(todos.Id)}
-              >
-                {todos.Title}
-                <span className="badge badge-primary badge-pill">
-                  {todos.TodoList.length}
-                </span>
-                <div className='modify-todo'>
-                  <button><PencilIcon size={16} /></button><button><XIcon size={16} /></button>
-                </div>
-              </li>
+                title={todos.Title}
+                length={todos.TodoList.length} />
             ))}
             <TextInput
               onSubmit={addListHandler}
