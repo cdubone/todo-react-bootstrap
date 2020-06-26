@@ -23,7 +23,8 @@ function TodoItem(props) {
             />
             <label htmlFor={props.htmlFor}>{props.label}</label>
             <div className='modify-todo'>
-                <button><PencilIcon size={16} /></button><button><XIcon size={16} /></button>
+                <button><PencilIcon size={16} /></button>
+                <button data-parent={props.id} onClick={props.deleteClick}><XIcon size={16} /></button>
             </div>
 
         </ li>

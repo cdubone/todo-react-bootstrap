@@ -59,6 +59,13 @@ function App() {
     console.log(selected);
   };
 
+  const deleteTodo = e => {
+    const id = Number(e.currentTarget.dataset.parent);
+    const newArray = todoDetails.TodoList.filter(x => x.Id !== id)
+    console.log(newArray);
+    todoDetails.TodoList = newArray;
+  };
+
   const randomNumber = () => {
     return Math.floor(Math.random() * 200) + 100;
   };
@@ -111,7 +118,8 @@ function App() {
                     htmlFor={details.Id}
                     label={details.Title}
                     isChecked={details.IsChecked}
-                    onChange={updateChecked} />
+                    onChange={updateChecked}
+                    deleteClick={deleteTodo} />
                 ))}
               </ul>
             )}
