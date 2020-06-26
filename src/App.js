@@ -59,9 +59,8 @@ function App() {
     console.log(selected);
   };
 
-  const deleteTodo = e => {
-    const id = Number(e.currentTarget.dataset.parent);
-    const newArray = todoDetails.TodoList.filter(x => x.Id !== id)
+  const deleteTodo = (todo) => {
+    const newArray = todoDetails.TodoList.filter(x => x !== todo)
     console.log(newArray);
     todoDetails.TodoList = newArray;
     setTodoDetails(todoDetails);
@@ -101,13 +100,13 @@ function App() {
             {todoDetails && (
               <ul className="list-group">
                 <h2>{todoDetails.Title} List</h2>
-                {todoDetails.TodoList.map(details => (
-                  <TodoItem key={details.Id} //not a prop
-                    id={details.Id}
-                    title={details.Title}
-                    isChecked={details.IsChecked}
+                {todoDetails.TodoList.map(todo => (
+                  <TodoItem key={todo.Id} //not a prop
+                    id={todo.Id}
+                    title={todo.Title}
+                    isChecked={todo.IsChecked}
                     onChange={updateChecked}
-                    deleteClick={deleteTodo} />
+                    deleteClick={() => deleteTodo(todo)} />
                 ))}
               </ul>
             )}

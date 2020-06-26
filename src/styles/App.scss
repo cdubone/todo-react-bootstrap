@@ -18,7 +18,7 @@
     position: relative;
 
     &.done {
-      background-color: rgb(230, 230, 230);
+      background-color: rgb(236, 236, 236);
       label {
         text-decoration: line-through;
       }
@@ -39,7 +39,7 @@
       button{
         background-color: white;
         color: #495057;
-        border: 1px solid #495057;
+        border: 1px solid rgba(0, 0, 0, 0.125);
 
         &:first-child {
           margin-right: 3px;
