@@ -27,7 +27,7 @@ function App() {
       "Id": randomNumber(),
       "Title": todoListToAdd,
       "TodoList": []
-    }
+    };
     const newArray = [...todoData, newItem];
     setTodoData(newArray);
     setTodoDetails(newItem);
@@ -40,7 +40,7 @@ function App() {
       "Id": randomNumber(),
       "Title": todoItemToAdd,
       "IsChecked": false
-    }
+    };
     const newArray = [...todoDetails.TodoList, newItem];
     todoDetails.TodoList = newArray;
     setTodoItemToAdd('');

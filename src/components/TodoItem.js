@@ -24,7 +24,6 @@ function TodoItem(props) {
                 <button><PencilIcon size={16} /></button>
                 <button data-parent={props.id} onClick={props.deleteClick}><XIcon size={16} /></button>
             </div>
-
         </ li>
     )
 }
