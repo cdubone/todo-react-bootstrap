@@ -13,13 +13,9 @@ function App() {
   const [todoItemToAdd, setTodoItemToAdd] = useState('');
 
   useEffect(() => {
-    getTodoData();
-  }, []);
-
-  const getTodoData = () => {
     setTodoData(TodoData);
     setTodoDetails(TodoData[0]);
-  };
+  }, []);
 
   const addListHandler = e => {
     e.preventDefault();
@@ -79,7 +75,8 @@ function App() {
               <TodoListItem key={todo.Id}//Not a prop
                 onClick={() => setTodoDetails(todo)}
                 title={todo.Title}
-                length={todo.TodoList.length} />
+                length={todo.TodoList.length}
+                selected={todoDetails.Id === todo.Id} />
             ))}
             <TextInput
               onSubmit={addListHandler}

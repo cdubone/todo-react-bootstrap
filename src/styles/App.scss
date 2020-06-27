@@ -24,6 +24,10 @@
       }
     }
 
+    &.selected {
+      background-color: rgb(236, 236, 236);
+    }
+
     &:hover {
       .modify-todo {
         display: inline;

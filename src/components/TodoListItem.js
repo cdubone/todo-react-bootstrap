@@ -4,9 +4,14 @@ import { PencilIcon, XIcon } from '@primer/octicons-react';
 
 function TodoListItem(props) {
 
+    let wrapperClass = "list-group-item list-group-item-action d-flex justify-content-between align-items-center";
+    if (props.selected === true) {
+        wrapperClass += " selected";
+    }
+
     return (
         <li
-            className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            className={wrapperClass}
             onClick={props.onClick}
         >
             {props.title}
