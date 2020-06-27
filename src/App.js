@@ -30,6 +30,18 @@ function App() {
     setTodoListToAdd('');
   };
 
+  const deleteListHandler = (todolist) => {
+    const newArray = todoData.filter(x => x !== todolist);
+    setTodoData(newArray);
+    console.log(newArray);
+    setActiveTodoList(newArray[0]);
+  };
+
+  const editListHandler = (e) => {
+    e.stopPropagation();
+    console.log(e.target);
+  };
+
   const addTodoHandler = e => {
     e.preventDefault();
     const newItem = {
@@ -47,7 +59,7 @@ function App() {
   };
 
   const deleteTodo = (todo) => {
-    const newArray = activeTodoList.TodoList.filter(x => x !== todo)
+    const newArray = activeTodoList.TodoList.filter(x => x !== todo);
     console.log(newArray);
     activeTodoList.TodoList = newArray;
     setActiveTodoList(activeTodoList);
@@ -76,7 +88,9 @@ function App() {
                 onClick={() => setActiveTodoList(todo)}
                 title={todo.Title}
                 length={todo.TodoList.length}
-                selected={activeTodoList.Id === todo.Id} />
+                selected={activeTodoList.Id === todo.Id}
+                deleteClick={() => deleteListHandler(todo)}
+                editClick={editListHandler} />
             ))}
             <TextInput
               onSubmit={addListHandler}
