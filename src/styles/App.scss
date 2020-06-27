@@ -2,6 +2,12 @@
 
 .App {
 
+  .header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
   .btn.list-group-item {
     border: 1px solid lightgray;
     margin-bottom: -1px;
@@ -15,7 +21,13 @@
   }
 
   .list-group-item-action {
-    position: relative;
+    &.todo-item {
+      padding: 0 0 0 0.75rem;
+
+      label {
+        padding: 0.75rem 1.25rem 0.75rem 0;
+      }
+    }
 
     &.done {
       background-color: rgb(236, 236, 236);
