@@ -10,10 +10,8 @@ function TodoListItem(props) {
     }
 
     return (
-        <li
-            className={wrapperClass}
-            onClick={props.onClick}
-        >
+        <li className={wrapperClass}
+            onClick={props.onClick}>
             {props.title}
             <span className="badge badge-primary badge-pill">
                 {props.length}

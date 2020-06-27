@@ -8,13 +8,13 @@ import TodoListItem from "./components/TodoListItem";
 
 function App() {
   const [todoData, setTodoData] = useState([]);
-  const [todoDetails, setTodoDetails] = useState(null);
+  const [activeTodoList, setActiveTodoList] = useState(null);
   const [todoListToAdd, setTodoListToAdd] = useState('');
   const [todoItemToAdd, setTodoItemToAdd] = useState('');
 
   useEffect(() => {
     setTodoData(TodoData);
-    setTodoDetails(TodoData[0]);
+    setActiveTodoList(TodoData[0]);
   }, []);
 
   const addListHandler = e => {
@@ -26,7 +26,7 @@ function App() {
     };
     const newArray = [...todoData, newItem];
     setTodoData(newArray);
-    setTodoDetails(newItem);
+    setActiveTodoList(newItem);
     setTodoListToAdd('');
   };
 
@@ -37,8 +37,8 @@ function App() {
       "Title": todoItemToAdd,
       "IsChecked": false
     };
-    const newArray = [...todoDetails.TodoList, newItem];
-    todoDetails.TodoList = newArray;
+    const newArray = [...activeTodoList.TodoList, newItem];
+    activeTodoList.TodoList = newArray;
     setTodoItemToAdd('');
   };
 
@@ -47,10 +47,10 @@ function App() {
   };
 
   const deleteTodo = (todo) => {
-    const newArray = todoDetails.TodoList.filter(x => x !== todo)
+    const newArray = activeTodoList.TodoList.filter(x => x !== todo)
     console.log(newArray);
-    todoDetails.TodoList = newArray;
-    setTodoDetails(todoDetails);
+    activeTodoList.TodoList = newArray;
+    setActiveTodoList(activeTodoList);
   };
 
   const randomNumber = () => {
@@ -73,10 +73,10 @@ function App() {
           <ul className="list-group col-sm-4 offset-sm-1">
             {todoData.map(todo => (
               <TodoListItem key={todo.Id}//Not a prop
-                onClick={() => setTodoDetails(todo)}
+                onClick={() => setActiveTodoList(todo)}
                 title={todo.Title}
                 length={todo.TodoList.length}
-                selected={todoDetails.Id === todo.Id} />
+                selected={activeTodoList.Id === todo.Id} />
             ))}
             <TextInput
               onSubmit={addListHandler}
@@ -85,10 +85,10 @@ function App() {
               onChange={updateAddList} />
           </ul>
           <div className="col-sm-6">
-            {todoDetails && (
+            {activeTodoList && (
               <ul className="list-group">
-                <h2>{todoDetails.Title} List</h2>
-                {todoDetails.TodoList.map(todo => (
+                <h2>{activeTodoList.Title} List</h2>
+                {activeTodoList.TodoList.map(todo => (
                   <TodoItem key={todo.Id} //not a prop
                     id={todo.Id}
                     title={todo.Title}
