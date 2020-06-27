@@ -18,13 +18,7 @@ function App() {
 
   const getTodoData = () => {
     setTodoData(TodoData);
-    getTodoDetails(TodoData[0].Id);
-  };
-
-  const getTodoDetails = id => {
-    const todoList = (todoData.length === 0) ? TodoData : todoData;
-    const result = todoList.find(x => x.Id === id);
-    setTodoDetails(result);
+    setTodoDetails(TodoData[0]);
   };
 
   const addListHandler = e => {
@@ -84,11 +78,11 @@ function App() {
         <Header />
         <div className="row">
           <ul className="list-group col-sm-4 offset-sm-1">
-            {todoData.map(todos => (
-              <TodoListItem key={todos.Id}//Not a prop
-                onClick={() => getTodoDetails(todos.Id)}
-                title={todos.Title}
-                length={todos.TodoList.length} />
+            {todoData.map(todo => (
+              <TodoListItem key={todo.Id}//Not a prop
+                onClick={() => setTodoDetails(todo)}
+                title={todo.Title}
+                length={todo.TodoList.length} />
             ))}
             <TextInput
               onSubmit={addListHandler}
