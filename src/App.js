@@ -46,11 +46,8 @@ function App() {
     setTodoItemToAdd('');
   };
 
-  const updateChecked = e => {
-    const id = Number(e.target.id);
-    const selected = todoDetails.TodoList.find(x => x.Id === id);
-    selected.IsChecked = !selected.IsChecked;
-    console.log(selected);
+  const updateChecked = todo => {
+    todo.IsChecked = !todo.IsChecked;
   };
 
   const deleteTodo = (todo) => {
@@ -99,7 +96,7 @@ function App() {
                     id={todo.Id}
                     title={todo.Title}
                     isChecked={todo.IsChecked}
-                    onChange={updateChecked}
+                    onChange={() => updateChecked(todo)}
                     deleteClick={() => deleteTodo(todo)} />
                 ))}
               </ul>
