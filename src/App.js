@@ -110,8 +110,7 @@ function App() {
                 editClick={() => openTodoListTitleEditor(todo)}
                 closeEditClick={() => closeTodoListTitleEditor()}
                 editorOpen={todoListEditorToOpen === todo.Id}
-                // editClick={() => editTodoListTitle(todo)}
-                updateForm={() => updateEditTodoList}
+                updateForm={updateEditTodoList}
                 value={todoListFormValue} />
             ))}
             <TextInput
