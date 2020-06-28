@@ -22,9 +22,12 @@ function TodoListItem(props) {
                 <button onClick={props.deleteClick}><XIcon size={16} /></button>
             </div>
             <div className={"edit-title " + (props.editorOpen ? '' : 'd-none')}>
-                <input onChange={props.updateForm} type="text" value={props.value} />
-                <button onClick={props.saveEdit}><CheckIcon size={16} /></button>
-                <button onClick={props.closeEditClick}><ArrowLeftIcon size={16} /></button>
+                <form action="">
+                    <input onChange={props.updateForm} type="text" value={props.value} />
+                    <button onClick={props.saveEdit} data-id={props.id} type="submit"><CheckIcon size={16} /></button>
+                    <button onClick={props.closeEditClick} type="reset"><ArrowLeftIcon size={16} /></button>
+                </form>
+
             </div>
         </li>
     )

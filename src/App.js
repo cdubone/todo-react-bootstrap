@@ -39,9 +39,12 @@ function App() {
     setActiveTodoList(newArray[0]);
   };
 
-  const saveEditTodoListTitle = (todo) => {
-    todo.Title = todoListFormValue;
-    console.log(todoListFormValue);
+  const saveEditTodoListTitle = (e) => {
+    e.preventDefault();
+    const id = Number(e.currentTarget.dataset.id);
+    const result = todoData.find(x => x.Id === id);
+    result.Title = todoListFormValue;
+    // todo.Title = todoListFormValue;
     closeTodoListTitleEditor();
   };
 
@@ -107,11 +110,12 @@ function App() {
                 selected={activeTodoList.Id === todo.Id}
                 deleteClick={() => deleteTodoList(todo)}
                 editClick={() => openTodoListTitleEditor(todo)}
-                saveEdit={() => saveEditTodoListTitle(todo)}
+                saveEdit={saveEditTodoListTitle}
                 closeEditClick={() => closeTodoListTitleEditor()}
                 editorOpen={todoListEditorToOpen === todo.Id}
                 updateForm={updateEditTodoList}
-                value={todoListFormValue} />
+                value={todoListFormValue}
+                id={todo.Id} />
             ))}
             <TextInput
               onSubmit={addTodoList}
