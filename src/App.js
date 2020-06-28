@@ -9,7 +9,9 @@ import TodoListItem from "./components/TodoListItem";
 function App() {
   const [todoData, setTodoData] = useState([]);
   const [activeTodoList, setActiveTodoList] = useState(null);
-  const [todoListToEdit, setTodoListToEdit] = useState('');
+  const [todoListFormValue, setTodoListFormValue] = useState('');
+  const [todoListEditorToOpen, setTodoListEditorToOpen] = useState('');
+  const [todoListEditorOpen, setTodoListEditorOpen] = useState(false);
   const [todoListToAdd, setTodoListToAdd] = useState('');
   const [todoItemToAdd, setTodoItemToAdd] = useState('');
 
@@ -43,6 +45,18 @@ function App() {
     console.log(todo);
   };
 
+  const openTodoListTitleEditor = (todo) => {
+    console.log(todo.Id);
+    setTodoListEditorToOpen(todo.Id);
+    setTodoListFormValue(todo.Title);
+    setTodoListEditorOpen(true);
+  };
+
+  const closeTodoListTitleEditor = () => {
+    console.log(todoListEditorToOpen);
+    setTodoListEditorOpen(false);
+  };
+
   const addTodoHandler = e => {
     e.preventDefault();
     const newItem = {
@@ -72,7 +86,7 @@ function App() {
 
   const updateEditTodoList = e => {
     console.log(e.target.value);
-    setTodoListToEdit(e.target.value);
+    setTodoListFormValue(e.target.value);
   }
 
   const updateAddList = e => {
@@ -96,9 +110,12 @@ function App() {
                 length={todo.TodoList.length}
                 selected={activeTodoList.Id === todo.Id}
                 deleteClick={() => deleteTodoList(todo)}
-                editClick={() => editTodoListTitle(todo)}
+                editClick={() => openTodoListTitleEditor(todo)}
+                closeEditClick={() => closeTodoListTitleEditor()}
+                editorOpen={todoListEditorToOpen === todo.Id}
+                // editClick={() => editTodoListTitle(todo)}
                 updateForm={() => updateEditTodoList}
-                value={todoListToEdit} />
+                value={todoListFormValue} />
             ))}
             <TextInput
               onSubmit={addTodoList}

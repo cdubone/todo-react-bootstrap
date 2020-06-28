@@ -1,5 +1,5 @@
 import React from 'react';
-import { PencilIcon, XIcon, CheckIcon } from '@primer/octicons-react';
+import { PencilIcon, XIcon, CheckIcon, ArrowLeftIcon } from '@primer/octicons-react';
 // import PropTypes from "prop-types";
 
 function TodoListItem(props) {
@@ -21,10 +21,10 @@ function TodoListItem(props) {
                 <button onClick={props.editClick}><PencilIcon size={16} /></button>
                 <button onClick={props.deleteClick}><XIcon size={16} /></button>
             </div>
-            <div className="edit-title d-none">
+            <div className={"edit-title " + (props.editorOpen ? '' : 'd-none')}>
                 <input onChange={props.updateForm} type="text" value={props.value} />
                 <button><CheckIcon size={16} /></button>
-                <button><XIcon size={16} /></button>
+                <button onClick={props.closeEditClick}><ArrowLeftIcon size={16} /></button>
             </div>
         </li>
     )
