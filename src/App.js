@@ -39,13 +39,13 @@ function App() {
     setActiveTodoList(newArray[0]);
   };
 
-  const editTodoListTitle = (todo) => {
-    todo.Title = "updated";
-    console.log(todo);
+  const saveEditTodoListTitle = (todo) => {
+    todo.Title = todoListFormValue;
+    console.log(todoListFormValue);
+    closeTodoListTitleEditor();
   };
 
   const openTodoListTitleEditor = (todo) => {
-    console.log(todo.Id);
     setTodoListEditorToOpen(todo.Id);
     setTodoListFormValue(todo.Title);
   };
@@ -82,7 +82,6 @@ function App() {
   };
 
   const updateEditTodoList = e => {
-    console.log(e.target.value);
     setTodoListFormValue(e.target.value);
   }
 
@@ -108,6 +107,7 @@ function App() {
                 selected={activeTodoList.Id === todo.Id}
                 deleteClick={() => deleteTodoList(todo)}
                 editClick={() => openTodoListTitleEditor(todo)}
+                saveEdit={() => saveEditTodoListTitle(todo)}
                 closeEditClick={() => closeTodoListTitleEditor()}
                 editorOpen={todoListEditorToOpen === todo.Id}
                 updateForm={updateEditTodoList}
