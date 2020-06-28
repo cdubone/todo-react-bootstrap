@@ -11,7 +11,6 @@ function App() {
   const [activeTodoList, setActiveTodoList] = useState(null);
   const [todoListFormValue, setTodoListFormValue] = useState('');
   const [todoListEditorToOpen, setTodoListEditorToOpen] = useState('');
-  const [todoListEditorOpen, setTodoListEditorOpen] = useState(false);
   const [todoListToAdd, setTodoListToAdd] = useState('');
   const [todoItemToAdd, setTodoItemToAdd] = useState('');
 
@@ -49,12 +48,10 @@ function App() {
     console.log(todo.Id);
     setTodoListEditorToOpen(todo.Id);
     setTodoListFormValue(todo.Title);
-    setTodoListEditorOpen(true);
   };
 
   const closeTodoListTitleEditor = () => {
-    console.log(todoListEditorToOpen);
-    setTodoListEditorOpen(false);
+    setTodoListEditorToOpen('');
   };
 
   const addTodoHandler = e => {
