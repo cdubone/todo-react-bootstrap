@@ -9,6 +9,7 @@ import TodoListItem from "./components/TodoListItem";
 function App() {
   const [todoData, setTodoData] = useState([]);
   const [activeTodoList, setActiveTodoList] = useState(null);
+  const [todoListToEdit, setTodoListToEdit] = useState('');
   const [todoListToAdd, setTodoListToAdd] = useState('');
   const [todoItemToAdd, setTodoItemToAdd] = useState('');
 
@@ -17,7 +18,7 @@ function App() {
     setActiveTodoList(TodoData[0]);
   }, []);
 
-  const addListHandler = e => {
+  const addTodoList = e => {
     e.preventDefault();
     const newItem = {
       "Id": randomNumber(),
@@ -30,16 +31,16 @@ function App() {
     setTodoListToAdd('');
   };
 
-  const deleteListHandler = (todolist) => {
+  const deleteTodoList = (todolist) => {
     const newArray = todoData.filter(x => x !== todolist);
     setTodoData(newArray);
     console.log(newArray);
     setActiveTodoList(newArray[0]);
   };
 
-  const editListHandler = (e) => {
-    e.stopPropagation();
-    console.log(e.target);
+  const editTodoListTitle = (todo) => {
+    todo.Title = "updated";
+    console.log(todo);
   };
 
   const addTodoHandler = e => {
@@ -69,6 +70,11 @@ function App() {
     return Math.floor(Math.random() * 200) + 100;
   };
 
+  const updateEditTodoList = e => {
+    console.log(e.target.value);
+    setTodoListToEdit(e.target.value);
+  }
+
   const updateAddList = e => {
     setTodoListToAdd(e.target.value);
   };
@@ -89,11 +95,13 @@ function App() {
                 title={todo.Title}
                 length={todo.TodoList.length}
                 selected={activeTodoList.Id === todo.Id}
-                deleteClick={() => deleteListHandler(todo)}
-                editClick={editListHandler} />
+                deleteClick={() => deleteTodoList(todo)}
+                editClick={() => editTodoListTitle(todo)}
+                updateForm={() => updateEditTodoList}
+                value={todoListToEdit} />
             ))}
             <TextInput
-              onSubmit={addListHandler}
+              onSubmit={addTodoList}
               placeholder="Add New List"
               value={todoListToAdd}
               onChange={updateAddList} />
