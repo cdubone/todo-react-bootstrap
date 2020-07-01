@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './styles/App.scss';
 import TodoData from './data/Todo';
 import Header from './components/Header'
@@ -7,17 +7,18 @@ import TodoItem from "./components/TodoItem";
 import TodoListItem from "./components/TodoListItem";
 
 function App() {
-  const [todoData, setTodoData] = useState([]);
-  const [activeTodoList, setActiveTodoList] = useState(null);
+  const [todoData, setTodoData] = useState(TodoData);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  // const [activeTodoList, setActiveTodoList] = useState(null);
   const [todoListFormValue, setTodoListFormValue] = useState('');
   const [todoListEditorToOpen, setTodoListEditorToOpen] = useState('');
   const [todoListToAdd, setTodoListToAdd] = useState('');
   const [todoItemToAdd, setTodoItemToAdd] = useState('');
 
-  useEffect(() => {
-    setTodoData(TodoData);
-    setActiveTodoList(TodoData[0]);
-  }, []);
+  const addSelectedIndex = index => {
+    setSelectedIndex(index);
+  };
+
 
   const addTodoList = e => {
     e.preventDefault();
@@ -28,14 +29,14 @@ function App() {
     };
     const newArray = [...todoData, newItem];
     setTodoData(newArray);
-    setActiveTodoList(newItem);
+    // setActiveTodoList(newItem);
     setTodoListToAdd('');
   };
 
   const deleteTodoList = (todolist) => {
     const newArray = todoData.filter(x => x !== todolist);
     setTodoData(newArray);
-    setActiveTodoList(newArray[0]);
+    // setActiveTodoList(newArray[0]);
   };
 
   const saveEditTodoListTitle = (e) => {
@@ -62,19 +63,35 @@ function App() {
       "Title": todoItemToAdd,
       "IsChecked": false
     };
-    const newArray = [...activeTodoList.TodoList, newItem];
-    activeTodoList.TodoList = newArray;
-    setTodoItemToAdd('');
+    console.log(newItem);
+    // const newArray = [...activeTodoList.TodoList, newItem];
+    // activeTodoList.TodoList = newArray;
+    // setTodoItemToAdd('');
   };
 
-  const updateChecked = todo => {
-    todo.IsChecked = !todo.IsChecked;
+  const updateChecked = todoItem => {
+    setTodoData(prev =>
+      prev.map((list, listIndex) => {
+        if (listIndex !== selectedIndex) return list;
+
+        return {
+          ...list,
+          TodoList: list.TodoList.map(todo => {
+            if (todo.Id !== todoItem.Id) return todo;
+            return {
+              ...todo,
+              IsChecked: !todo.IsChecked,
+            };
+          }),
+        };
+      }),
+    );
   };
 
   const deleteTodo = (todo) => {
-    const newArray = activeTodoList.TodoList.filter(x => x !== todo);
-    activeTodoList.TodoList = newArray;
-    setActiveTodoList(activeTodoList);
+    // const newArray = activeTodoList.TodoList.filter(x => x !== todo);
+    // activeTodoList.TodoList = newArray;
+    // setActiveTodoList(activeTodoList);
   };
 
   const randomNumber = () => {
@@ -99,12 +116,12 @@ function App() {
         <Header />
         <div className="row">
           <ul className="list-group col-sm-4 offset-sm-1">
-            {todoData.map(todo => (
+            {todoData.map((todo, todoIndex) => (
               <TodoListItem key={todo.Id}//Not a prop
-                onClick={() => setActiveTodoList(todo)}
+                onClick={() => addSelectedIndex(todoIndex)}
                 title={todo.Title}
                 length={todo.TodoList.length}
-                selected={activeTodoList.Id === todo.Id}
+                // selected={activeTodoList.Id === todo.Id}
                 deleteClick={() => deleteTodoList(todo)}
                 editClick={() => openTodoListTitleEditor(todo)}
                 saveEdit={saveEditTodoListTitle}
@@ -121,18 +138,20 @@ function App() {
               onChange={updateAddList} />
           </ul>
           <div className="col-sm-6">
-            {activeTodoList && (
-              <ul className="list-group">
-                <h2>{activeTodoList.Title} List</h2>
-                {activeTodoList.TodoList.map(todo => (
-                  <TodoItem key={todo.Id} //not a prop
-                    id={todo.Id}
-                    title={todo.Title}
-                    onChange={() => updateChecked(todo)}
-                    isChecked={todo.IsChecked}
-                    deleteClick={() => deleteTodo(todo)} />
-                ))}
-              </ul>
+            {todoData[selectedIndex] && (
+              <React.Fragment>
+                <h2>{todoData[selectedIndex].Title} List</h2>
+                <ul className="list-group">
+                  {todoData[selectedIndex].TodoList.map((todoItem, todoItemIndex) => (
+                    <TodoItem key={todoItem.Id} //not a prop
+                      id={todoItem.Id}
+                      title={todoItem.Title}
+                      onChange={() => updateChecked(todoItem, todoItemIndex)}
+                      isChecked={todoItem.IsChecked}
+                      deleteClick={() => deleteTodo(todoItem)} />
+                  ))}
+                </ul>
+              </React.Fragment>
             )}
             <TextInput
               onSubmit={addTodoHandler}
