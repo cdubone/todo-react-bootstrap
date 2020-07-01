@@ -9,7 +9,6 @@ import TodoListItem from "./components/TodoListItem";
 function App() {
   const [todoData, setTodoData] = useState(TodoData);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  // const [activeTodoList, setActiveTodoList] = useState(null);
   const [todoListFormValue, setTodoListFormValue] = useState('');
   const [todoListEditorToOpen, setTodoListEditorToOpen] = useState('');
   const [todoListToAdd, setTodoListToAdd] = useState('');
@@ -29,14 +28,14 @@ function App() {
     };
     const newArray = [...todoData, newItem];
     setTodoData(newArray);
-    // setActiveTodoList(newItem);
+    addSelectedIndex(todoData.length);
     setTodoListToAdd('');
   };
 
   const deleteTodoList = (todolist) => {
     const newArray = todoData.filter(x => x !== todolist);
     setTodoData(newArray);
-    // setActiveTodoList(newArray[0]);
+    setSelectedIndex(0);
   };
 
   const saveEditTodoListTitle = (e) => {
@@ -64,9 +63,9 @@ function App() {
       "IsChecked": false
     };
     console.log(newItem);
-    // const newArray = [...activeTodoList.TodoList, newItem];
-    // activeTodoList.TodoList = newArray;
-    // setTodoItemToAdd('');
+    const newArray = [...todoData[selectedIndex].TodoList, newItem];
+    todoData[selectedIndex].TodoList = newArray;
+    setTodoItemToAdd('');
   };
 
   const updateChecked = todoItem => {
@@ -89,9 +88,9 @@ function App() {
   };
 
   const deleteTodo = (todo) => {
-    // const newArray = activeTodoList.TodoList.filter(x => x !== todo);
-    // activeTodoList.TodoList = newArray;
-    // setActiveTodoList(activeTodoList);
+    const newArray = todoData[selectedIndex].TodoList.filter(x => x !== todo);
+    todoData[selectedIndex].TodoList = newArray;
+    // setSelectedIndex(selectedIndex);
   };
 
   const randomNumber = () => {
@@ -121,7 +120,7 @@ function App() {
                 onClick={() => addSelectedIndex(todoIndex)}
                 title={todo.Title}
                 length={todo.TodoList.length}
-                // selected={activeTodoList.Id === todo.Id}
+                selected={todoData[selectedIndex].Id === todo.Id}
                 deleteClick={() => deleteTodoList(todo)}
                 editClick={() => openTodoListTitleEditor(todo)}
                 saveEdit={saveEditTodoListTitle}
