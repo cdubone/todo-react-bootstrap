@@ -10,7 +10,9 @@ function App() {
   const [todoData, setTodoData] = useState(TodoData);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [todoListFormValue, setTodoListFormValue] = useState('');
+  const [todoItemListFormValue, setTodoItemListFormValue] = useState('');
   const [todoListEditorToOpen, setTodoListEditorToOpen] = useState('');
+  const [todoListItemEditorToOpen, setTodoItemListEditorToOpen] = useState('');
   const [todoListToAdd, setTodoListToAdd] = useState('');
   const [todoItemToAdd, setTodoItemToAdd] = useState('');
 
@@ -46,6 +48,14 @@ function App() {
     closeTodoListTitleEditor();
   };
 
+  const saveEditTodoItemListTitle = (e) => {
+    e.preventDefault();
+    const id = Number(e.currentTarget.dataset.id);
+    const result = todoData[selectedIndex].TodoList.find(x => x.Id === id);
+    result.Title = todoItemListFormValue;
+    closeTodoItemListTitleEditor();
+  };
+
   const openTodoListTitleEditor = (todo) => {
     setTodoListEditorToOpen(todo.Id);
     setTodoListFormValue(todo.Title);
@@ -53,6 +63,15 @@ function App() {
 
   const closeTodoListTitleEditor = () => {
     setTodoListEditorToOpen('');
+  };
+
+  const openTodoItemListTitleEditor = (todo) => {
+    setTodoItemListEditorToOpen(todo.Id);
+    setTodoItemListFormValue(todo.Title);
+  };
+
+  const closeTodoItemListTitleEditor = () => {
+    setTodoItemListEditorToOpen('');
   };
 
   const addTodoHandler = e => {
@@ -101,6 +120,10 @@ function App() {
     setTodoListFormValue(e.target.value);
   }
 
+  const updateEditTodoItemList = e => {
+    setTodoItemListFormValue(e.target.value);
+  }
+
   const updateAddList = e => {
     setTodoListToAdd(e.target.value);
   };
@@ -147,7 +170,12 @@ function App() {
                       title={todoItem.Title}
                       onChange={() => updateChecked(todoItem, todoItemIndex)}
                       isChecked={todoItem.IsChecked}
-                      deleteClick={() => deleteTodo(todoItem)} />
+                      deleteClick={() => deleteTodo(todoItem)}
+                      editorOpen={todoListItemEditorToOpen === todoItem.Id}
+                      editClick={() => openTodoItemListTitleEditor(todoItem)}
+                      updateForm={updateEditTodoItemList}
+                      saveEdit={saveEditTodoItemListTitle}
+                      closeEditClick={() => closeTodoListTitleEditor()} />
                   ))}
                 </ul>
               </React.Fragment>
