@@ -1,5 +1,6 @@
 import React from 'react';
 import { PencilIcon, XIcon } from '@primer/octicons-react';
+import TextEdit from "./TextEdit";
 // import PropTypes from "prop-types";
 
 function TodoItem(props) {
@@ -24,6 +25,12 @@ function TodoItem(props) {
                 <button><PencilIcon size={16} /></button>
                 <button data-parent={props.id} onClick={props.deleteClick}><XIcon size={16} /></button>
             </div>
+            <TextEdit
+                editorOpen={props.editorOpen}
+                updateForm={props.updateForm}
+                saveEdit={props.saveEdit}
+                id={props.id}
+                closeEditClick={props.closeEditClick} />
         </ li>
     )
 }
