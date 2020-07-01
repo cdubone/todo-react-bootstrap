@@ -35,7 +35,6 @@ function App() {
   const deleteTodoList = (todolist) => {
     const newArray = todoData.filter(x => x !== todolist);
     setTodoData(newArray);
-    console.log(newArray);
     setActiveTodoList(newArray[0]);
   };
 
@@ -44,7 +43,6 @@ function App() {
     const id = Number(e.currentTarget.dataset.id);
     const result = todoData.find(x => x.Id === id);
     result.Title = todoListFormValue;
-    // todo.Title = todoListFormValue;
     closeTodoListTitleEditor();
   };
 
@@ -75,7 +73,6 @@ function App() {
 
   const deleteTodo = (todo) => {
     const newArray = activeTodoList.TodoList.filter(x => x !== todo);
-    console.log(newArray);
     activeTodoList.TodoList = newArray;
     setActiveTodoList(activeTodoList);
   };
@@ -131,8 +128,8 @@ function App() {
                   <TodoItem key={todo.Id} //not a prop
                     id={todo.Id}
                     title={todo.Title}
-                    isChecked={todo.IsChecked}
                     onChange={() => updateChecked(todo)}
+                    isChecked={todo.IsChecked}
                     deleteClick={() => deleteTodo(todo)} />
                 ))}
               </ul>
