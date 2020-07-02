@@ -139,29 +139,31 @@ function App() {
       <div className="container">
         <Header />
         <div className="row">
-          <ul className="list-group col-sm-4 offset-sm-1">
-            {todoData.map((todo, todoIndex) => (
-              <TodoListItem key={todo.Id}//Not a prop
-                onClick={() => addSelectedIndex(todoIndex)}
-                title={todo.Title}
-                length={todo.TodoList.length}
-                selected={todoData[selectedIndex].Id === todo.Id}
-                deleteClick={() => deleteTodoList(todo)}
-                editClick={() => openTodoListTitleEditor(todo)}
-                saveEdit={saveEditTodoListTitle}
-                closeEditClick={() => closeTodoListTitleEditor()}
-                editorOpen={todoListEditorToOpen === todo.Id}
-                updateForm={updateEditTodoList}
-                value={todoListFormValue}
-                id={todo.Id} />
-            ))}
-            <TextInput
-              onSubmit={addTodoList}
-              placeholder="Add New List"
-              value={todoListToAdd}
-              onChange={updateAddList} />
-          </ul>
-          <div className="col-sm-6">
+          <div className="col-lg-4 offset-lg-1 col-md-5 offet-md-0">
+            <ul className="list-group">
+              {todoData.map((todo, todoIndex) => (
+                <TodoListItem key={todo.Id}//Not a prop
+                  onClick={() => addSelectedIndex(todoIndex)}
+                  title={todo.Title}
+                  length={todo.TodoList.length}
+                  selected={todoData[selectedIndex].Id === todo.Id}
+                  deleteClick={() => deleteTodoList(todo)}
+                  editClick={() => openTodoListTitleEditor(todo)}
+                  saveEdit={saveEditTodoListTitle}
+                  closeEditClick={() => closeTodoListTitleEditor()}
+                  editorOpen={todoListEditorToOpen === todo.Id}
+                  updateForm={updateEditTodoList}
+                  value={todoListFormValue}
+                  id={todo.Id} />
+              ))}
+              <TextInput
+                onSubmit={addTodoList}
+                placeholder="Add New List"
+                value={todoListToAdd}
+                onChange={updateAddList} />
+            </ul>
+          </div>
+          <div className="col-lg-6 col-md-7">
             {todoData[selectedIndex] && (
               <React.Fragment>
                 <h2>{todoData[selectedIndex].Title} List</h2>
@@ -180,6 +182,7 @@ function App() {
                       closeEditClick={() => closeTodoListTitleEditor()} />
                   ))}
                 </ul>
+
               </React.Fragment>
             )}
             <TextInput
