@@ -5,6 +5,8 @@ import Header from './components/Header'
 import TextInput from "./components/TextInput";
 import TodoItem from "./components/TodoItem";
 import TodoListItem from "./components/TodoListItem";
+import BootstrapModal from "./components/BootstrapModal";
+import { Button } from "react-bootstrap";
 
 function App() {
   const [todoData, setTodoData] = useState(TodoData);
@@ -111,7 +113,7 @@ function App() {
     const newArray = todoData[selectedIndex].TodoList.filter(x => x !== todo);
     console.log(newArray);
     todoData[selectedIndex].TodoList = newArray;
-    // setSelectedIndex(0);
+    // setSelectedIndex(selectedIndex);
   };
 
   const randomNumber = () => {
@@ -134,66 +136,89 @@ function App() {
     setTodoItemToAdd(e.target.value);
   };
 
-  return (
-    <div className="App">
-      <div className="container">
-        <Header />
-        <div className="row">
-          <div className="col-lg-4 offset-lg-1 col-md-5 offet-md-0">
-            <ul className="list-group">
-              {todoData.map((todo, todoIndex) => (
-                <TodoListItem key={todo.Id}//Not a prop
-                  onClick={() => addSelectedIndex(todoIndex)}
-                  title={todo.Title}
-                  length={todo.TodoList.length}
-                  selected={todoData[selectedIndex].Id === todo.Id}
-                  deleteClick={() => deleteTodoList(todo)}
-                  editClick={() => openTodoListTitleEditor(todo)}
-                  saveEdit={saveEditTodoListTitle}
-                  closeEditClick={() => closeTodoListTitleEditor()}
-                  editorOpen={todoListEditorToOpen === todo.Id}
-                  updateForm={updateEditTodoList}
-                  value={todoListFormValue}
-                  id={todo.Id} />
-              ))}
-              <TextInput
-                onSubmit={addTodoList}
-                placeholder="Add New List"
-                value={todoListToAdd}
-                onChange={updateAddList} />
-            </ul>
-          </div>
-          <div className="col-lg-6 col-md-7">
-            {todoData[selectedIndex] && (
-              <React.Fragment>
-                <h2>{todoData[selectedIndex].Title} List</h2>
-                <ul className="list-group">
-                  {todoData[selectedIndex].TodoList.map((todoItem, todoItemIndex) => (
-                    <TodoItem key={todoItem.Id} //not a prop
-                      id={todoItem.Id}
-                      title={todoItem.Title}
-                      onChange={() => updateChecked(todoItem, todoItemIndex)}
-                      isChecked={todoItem.IsChecked}
-                      deleteClick={() => deleteTodo(todoItem)}
-                      editorOpen={todoListItemEditorToOpen === todoItem.Id}
-                      editClick={() => openTodoItemListTitleEditor(todoItem)}
-                      updateForm={updateEditTodoItemList}
-                      saveEdit={saveEditTodoItemListTitle}
-                      closeEditClick={() => closeTodoListTitleEditor()} />
-                  ))}
-                </ul>
+  // const [isOpen, setIsOpen] = React.useState(false);
 
-              </React.Fragment>
-            )}
-            <TextInput
-              onSubmit={addTodoHandler}
-              placeholder="Add New Todo"
-              value={todoItemToAdd}
-              onChange={updateAddTodo} />
+  // const showModal = () => {
+  //   setIsOpen(true);
+  // };
+
+  // const hideModal = () => {
+  //   setIsOpen(false);
+  // };
+
+  const [modalShow, setModalShow] = React.useState(false);
+
+  return (
+    <React.Fragment>
+      <div className="App">
+        <div className="container">
+          <Header />
+          <div className="row">
+            <div className="col-lg-4 offset-lg-1 col-md-5 offet-md-0">
+              <ul className="list-group">
+                {todoData.map((todo, todoIndex) => (
+                  <TodoListItem key={todo.Id}//Not a prop
+                    onClick={() => addSelectedIndex(todoIndex)}
+                    title={todo.Title}
+                    length={todo.TodoList.length}
+                    selected={todoData[selectedIndex].Id === todo.Id}
+                    deleteClick={() => setModalShow(true)}
+                    // deleteClick={() => deleteTodoList(todo)}
+                    editClick={() => openTodoListTitleEditor(todo)}
+                    saveEdit={saveEditTodoListTitle}
+                    closeEditClick={() => closeTodoListTitleEditor()}
+                    editorOpen={todoListEditorToOpen === todo.Id}
+                    updateForm={updateEditTodoList}
+                    value={todoListFormValue}
+                    id={todo.Id} />
+                ))}
+                <TextInput
+                  onSubmit={addTodoList}
+                  placeholder="Add New List"
+                  value={todoListToAdd}
+                  onChange={updateAddList} />
+              </ul>
+            </div>
+            <div className="col-lg-6 col-md-7">
+              {todoData[selectedIndex] && (
+                <React.Fragment>
+                  <h2>{todoData[selectedIndex].Title} List</h2>
+                  <ul className="list-group">
+                    {todoData[selectedIndex].TodoList.map((todoItem, todoItemIndex) => (
+                      <TodoItem key={todoItem.Id} //not a prop
+                        id={todoItem.Id}
+                        title={todoItem.Title}
+                        onChange={() => updateChecked(todoItem, todoItemIndex)}
+                        isChecked={todoItem.IsChecked}
+                        deleteClick={() => setModalShow(true)}
+                        // deleteClick={() => deleteTodo(todoItem)}
+                        editorOpen={todoListItemEditorToOpen === todoItem.Id}
+                        editClick={() => openTodoItemListTitleEditor(todoItem)}
+                        updateForm={updateEditTodoItemList}
+                        saveEdit={saveEditTodoItemListTitle}
+                        closeEditClick={() => closeTodoListTitleEditor()} />
+                    ))}
+                  </ul>
+
+                </React.Fragment>
+              )}
+              <TextInput
+                onSubmit={addTodoHandler}
+                placeholder="Add New Todo"
+                value={todoItemToAdd}
+                onChange={updateAddTodo} />
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div> <Button variant="primary" onClick={() => setModalShow(true)}>
+        Launch modal
+      </Button>
+
+      <BootstrapModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+    </React.Fragment>
   );
 }
 
