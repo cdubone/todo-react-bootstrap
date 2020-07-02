@@ -20,7 +20,7 @@ function TodoListItem(props) {
             </div>
             <div className='modify-todo'>
                 <button onClick={props.editClick}><PencilIcon size={16} /></button>
-                <button onClick={props.deleteClick}><XIcon size={16} /></button>
+                <button onClick={props.deleteClick} data-parent={props.id}><XIcon size={16} /></button>
             </div>
             <TextEdit
                 editorOpen={props.editorOpen}
