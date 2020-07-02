@@ -22,8 +22,8 @@ function TodoItem(props) {
             />
             <label htmlFor={props.id}>{props.title}</label>
             <div className='modify-todo'>
-                <button><PencilIcon size={16} /></button>
-                <button data-parent={props.id} onClick={props.deleteClick}><XIcon size={16} /></button>
+                <button onClick={props.editClick} ><PencilIcon size={16} /></button>
+                <button onClick={props.deleteClick} data-parent={props.id}><XIcon size={16} /></button>
             </div>
             <TextEdit
                 editorOpen={props.editorOpen}

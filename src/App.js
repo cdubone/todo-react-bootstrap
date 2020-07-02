@@ -66,6 +66,7 @@ function App() {
   };
 
   const openTodoItemListTitleEditor = (todo) => {
+    console.log(todo);
     setTodoItemListEditorToOpen(todo.Id);
     setTodoItemListFormValue(todo.Title);
   };
@@ -108,8 +109,9 @@ function App() {
 
   const deleteTodo = (todo) => {
     const newArray = todoData[selectedIndex].TodoList.filter(x => x !== todo);
+    console.log(newArray);
     todoData[selectedIndex].TodoList = newArray;
-    // setSelectedIndex(selectedIndex);
+    // setSelectedIndex(0);
   };
 
   const randomNumber = () => {
