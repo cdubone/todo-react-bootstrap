@@ -6,7 +6,6 @@ import TextInput from "./components/TextInput";
 import TodoItem from "./components/TodoItem";
 import TodoListItem from "./components/TodoListItem";
 import BootstrapModal from "./components/BootstrapModal";
-import { Button } from "react-bootstrap";
 
 function App() {
   const [todoData, setTodoData] = useState(TodoData);
@@ -17,6 +16,8 @@ function App() {
   const [todoListItemEditorToOpen, setTodoItemListEditorToOpen] = useState('');
   const [todoListToAdd, setTodoListToAdd] = useState('');
   const [todoItemToAdd, setTodoItemToAdd] = useState('');
+  const [modalShow, setModalShow] = React.useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
 
   const addSelectedIndex = index => {
     setSelectedIndex(index);
@@ -34,6 +35,11 @@ function App() {
     setTodoData(newArray);
     addSelectedIndex(todoData.length);
     setTodoListToAdd('');
+  };
+
+  const openDeleteTodoListModal = (todolist) => {
+    setModalShow(true);
+    setItemToDelete(todolist);
   };
 
   const deleteTodoList = (todolist) => {
@@ -68,7 +74,6 @@ function App() {
   };
 
   const openTodoItemListTitleEditor = (todo) => {
-    console.log(todo);
     setTodoItemListEditorToOpen(todo.Id);
     setTodoItemListFormValue(todo.Title);
   };
@@ -84,7 +89,6 @@ function App() {
       "Title": todoItemToAdd,
       "IsChecked": false
     };
-    console.log(newItem);
     const newArray = [...todoData[selectedIndex].TodoList, newItem];
     todoData[selectedIndex].TodoList = newArray;
     setTodoItemToAdd('');
@@ -109,11 +113,22 @@ function App() {
     );
   };
 
+  const openDeleteTodoModal = (todo) => {
+    setModalShow(true);
+    setItemToDelete(todo);
+  };
+
   const deleteTodo = (todo) => {
     const newArray = todoData[selectedIndex].TodoList.filter(x => x !== todo);
-    console.log(newArray);
     todoData[selectedIndex].TodoList = newArray;
-    // setSelectedIndex(selectedIndex);
+  };
+
+  const chooseAndDelete = () => {
+    setModalShow(false)
+    if (itemToDelete.TodoList)
+      deleteTodoList(itemToDelete);
+    else
+      deleteTodo(itemToDelete);
   };
 
   const randomNumber = () => {
@@ -122,11 +137,11 @@ function App() {
 
   const updateEditTodoList = e => {
     setTodoListFormValue(e.target.value);
-  }
+  };
 
   const updateEditTodoItemList = e => {
     setTodoItemListFormValue(e.target.value);
-  }
+  };
 
   const updateAddList = e => {
     setTodoListToAdd(e.target.value);
@@ -136,17 +151,6 @@ function App() {
     setTodoItemToAdd(e.target.value);
   };
 
-  // const [isOpen, setIsOpen] = React.useState(false);
-
-  // const showModal = () => {
-  //   setIsOpen(true);
-  // };
-
-  // const hideModal = () => {
-  //   setIsOpen(false);
-  // };
-
-  const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <React.Fragment>
@@ -162,8 +166,7 @@ function App() {
                     title={todo.Title}
                     length={todo.TodoList.length}
                     selected={todoData[selectedIndex].Id === todo.Id}
-                    deleteClick={() => setModalShow(true)}
-                    // deleteClick={() => deleteTodoList(todo)}
+                    deleteClick={() => openDeleteTodoListModal(todo)}
                     editClick={() => openTodoListTitleEditor(todo)}
                     saveEdit={saveEditTodoListTitle}
                     closeEditClick={() => closeTodoListTitleEditor()}
@@ -190,8 +193,7 @@ function App() {
                         title={todoItem.Title}
                         onChange={() => updateChecked(todoItem, todoItemIndex)}
                         isChecked={todoItem.IsChecked}
-                        deleteClick={() => setModalShow(true)}
-                        // deleteClick={() => deleteTodo(todoItem)}
+                        deleteClick={() => openDeleteTodoModal(todoItem)}
                         editorOpen={todoListItemEditorToOpen === todoItem.Id}
                         editClick={() => openTodoItemListTitleEditor(todoItem)}
                         updateForm={updateEditTodoItemList}
@@ -199,7 +201,6 @@ function App() {
                         closeEditClick={() => closeTodoListTitleEditor()} />
                     ))}
                   </ul>
-
                 </React.Fragment>
               )}
               <TextInput
@@ -210,13 +211,11 @@ function App() {
             </div>
           </div>
         </div>
-      </div> <Button variant="primary" onClick={() => setModalShow(true)}>
-        Launch modal
-      </Button>
-
+      </div>
       <BootstrapModal
         show={modalShow}
         onHide={() => setModalShow(false)}
+        onConfirm={() => chooseAndDelete()}
       />
     </React.Fragment>
   );
