@@ -151,7 +151,6 @@ function App() {
     setTodoItemToAdd(e.target.value);
   };
 
-
   return (
     <React.Fragment>
       <div className="App">
@@ -198,7 +197,8 @@ function App() {
                         editClick={() => openTodoItemListTitleEditor(todoItem)}
                         updateForm={updateEditTodoItemList}
                         saveEdit={saveEditTodoItemListTitle}
-                        closeEditClick={() => closeTodoListTitleEditor()} />
+                        closeEditClick={() => closeTodoItemListTitleEditor()}
+                        value={todoItemListFormValue} />
                     ))}
                   </ul>
                 </React.Fragment>

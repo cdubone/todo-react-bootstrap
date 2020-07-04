@@ -27,6 +27,7 @@ function TodoListItem(props) {
                 updateForm={props.updateForm}
                 saveEdit={props.saveEdit}
                 id={props.id}
+                value={props.value}
                 closeEditClick={props.closeEditClick} />
         </li>
     )

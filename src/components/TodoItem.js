@@ -13,14 +13,11 @@ function TodoItem(props) {
     return (
         <li className={wrapperClass}>
             <input
-
                 type="checkbox"
                 id={props.id}
                 name={props.id}
-                value={props.title}
                 checked={props.isChecked}
-                onChange={props.onChange}
-            />
+                onChange={props.onChange} />
             <label className='padded-content' htmlFor={props.id}>{props.title}</label>
             <div className='modify-todo'>
                 <button onClick={props.editClick} ><PencilIcon size={16} /></button>
@@ -31,6 +28,7 @@ function TodoItem(props) {
                 updateForm={props.updateForm}
                 saveEdit={props.saveEdit}
                 id={props.id}
+                value={props.title}
                 closeEditClick={props.closeEditClick} />
         </ li>
     )
