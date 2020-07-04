@@ -12,7 +12,7 @@ function TodoListItem(props) {
 
     return (
         <li className={wrapperClass}>
-            <div onClick={props.onClick}>
+            <div className='padded-content' onClick={props.onClick}>
                 {props.title}
                 <span className="badge badge-primary badge-pill">
                     {props.length}

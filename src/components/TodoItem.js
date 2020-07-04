@@ -13,6 +13,7 @@ function TodoItem(props) {
     return (
         <li className={wrapperClass}>
             <input
+
                 type="checkbox"
                 id={props.id}
                 name={props.id}
@@ -20,7 +21,7 @@ function TodoItem(props) {
                 checked={props.isChecked}
                 onChange={props.onChange}
             />
-            <label htmlFor={props.id}>{props.title}</label>
+            <label className='padded-content' htmlFor={props.id}>{props.title}</label>
             <div className='modify-todo'>
                 <button onClick={props.editClick} ><PencilIcon size={16} /></button>
                 <button onClick={props.deleteClick} data-parent={props.id}><XIcon size={16} /></button>

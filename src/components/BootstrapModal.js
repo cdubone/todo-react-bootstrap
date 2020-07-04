@@ -15,7 +15,7 @@ function BootstrapModal(props) {
             </Modal.Header>
             <Modal.Body>
                 <h4>Warning: This is permanent!</h4>
-                <p>Are you sure you want to delete this? If so click 'Yes'. Otherwise click cancel.</p>
+                <p>Are you sure you want to delete this? If so click 'Confirm'. Otherwise click 'Cancel'.</p>
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onConfirm}>Confirm</Button>
