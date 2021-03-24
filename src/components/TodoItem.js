@@ -1,7 +1,7 @@
 import React from 'react';
 import { PencilIcon, XIcon } from '@primer/octicons-react';
 import TextEdit from "./TextEdit";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 function TodoItem(props) {
 
@@ -34,13 +34,15 @@ function TodoItem(props) {
     )
 }
 
-// TodoItem.propTypes = {
-//     onSubmit: PropTypes.func.isRequired,
-//     placeholder: PropTypes.string.isRequired,
-//     value: PropTypes.string.isRequired,
-//     onChange: PropTypes.func.isRequired,
-//     error: PropTypes.string
-// };
+TodoItem.propTypes = {
+    id: PropTypes.number.isRequired,
+    value: PropTypes.string.isRequired,
+    isChecked: PropTypes.bool.isRequired,
+    onChange: PropTypes.func.isRequired,
+    editClick: PropTypes.func.isRequired,
+    deleteClick: PropTypes.func.isRequired,
+    error: PropTypes.string
+};
 
 // TodoItem.defaultProps = {
 //     error: ""

@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { CheckIcon, ReplyIcon } from '@primer/octicons-react';
 
 function TextInput(props) {
@@ -14,6 +14,16 @@ function TextInput(props) {
         </div>
     )
 }
+
+TextInput.propTypes = {
+    editorOpen: PropTypes.bool.isRequired,
+    updateForm: PropTypes.func.isRequired,
+    id: PropTypes.number.isRequired,
+    value: PropTypes.string.isRequired,
+    saveEdit: PropTypes.func.isRequired,
+    closeEditClick: PropTypes.func.isRequired,
+    error: PropTypes.string
+};
 
 
 export default TextInput;

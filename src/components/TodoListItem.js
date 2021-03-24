@@ -1,17 +1,12 @@
 import React from 'react';
 import { PencilIcon, XIcon } from '@primer/octicons-react';
 import TextEdit from "./TextEdit";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 function TodoListItem(props) {
 
-    let wrapperClass = "list-group-item list-group-item-action";
-    if (props.selected === true) {
-        wrapperClass += " selected";
-    }
-
     return (
-        <li className={wrapperClass}>
+        <li className={"list-group-item list-group-item-action " + ((props.selected === true) ? 'selected' : '')}>
             <div className='padded-content' onClick={props.onClick}>
                 {props.title}
                 <span className="badge badge-primary badge-pill">
@@ -33,13 +28,11 @@ function TodoListItem(props) {
     )
 }
 
-// TodoListItem.propTypes = {
-//     onSubmit: PropTypes.func.isRequired,
-//     placeholder: PropTypes.string.isRequired,
-//     value: PropTypes.string.isRequired,
-//     onChange: PropTypes.func.isRequired,
-//     error: PropTypes.string
-// };
+TodoListItem.propTypes = {
+    value: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+    error: PropTypes.string
+};
 
 // TodoListItem.defaultProps = {
 //     error: ""
